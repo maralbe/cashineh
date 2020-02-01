@@ -1,0 +1,22 @@
+{
+  "name": "thirdparty/cashineh",
+  "description": "library for cashineh",
+  "type": "library",
+  "require": {
+    "ext-json": "^1.6",
+    "guzzlehttp/guzzle": "^6.5"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maral Behvandi",
+      "email": "maral.behvandi@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "thirdparty\\cashineh\\": "src"
+    }
+  }
+}
