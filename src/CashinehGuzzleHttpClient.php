@@ -83,6 +83,10 @@ class CashinehGuzzleHttpClient implements iCashinehAPIClient
         $this->order_date = $order_date;
     }
 
+    /**
+     * @return mixed
+     * @throws ApiResponseException
+     */
     function saveOrderInfo()
     {
         return $this->postRequest($this->getConfig('save_order_info_url'), [
