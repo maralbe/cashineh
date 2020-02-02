@@ -4,9 +4,9 @@
 namespace thirdparty\cashineh;
 
 
+use Exception;
 use GuzzleHttp\Client;
-use http\Exception;
-use JsonException;
+use thirdparty\cashineh\Exception\ApiResponseException;
 
 /**
  * Class CashinehGuzzleHttpClient
@@ -110,6 +110,7 @@ class CashinehGuzzleHttpClient implements iCashinehAPIClient
      * @param string $url
      * @param array  $request_body
      * @return mixed
+     * @throws ApiResponseException
      */
     private function postRequest(string $url, array $request_body)
     {
@@ -117,27 +118,20 @@ class CashinehGuzzleHttpClient implements iCashinehAPIClient
             'Content-Type'  => 'application/json'
         ];
 
-        $response = $this->http_client->request(
-            'POST',
-            $url,
-            [
-                'headers'     => $headers,
-                'http_errors' => false,
-                'json'        => $request_body
-            ]
-        );
-
         try {
-            return json_decode(
-                $response->getBody()->getContents(),
-                $assoc = true,
-                $depth = 512,
-                JSON_THROW_ON_ERROR
+            $response = $this->http_client->request(
+                'POST',
+                $url,
+                [
+                    'headers'     => $headers,
+                    'json'        => $request_body
+                ]
             );
-        } catch (JsonException $e) {
 
+            return $response->getBody()->getContents();
         } catch (Exception $e) {
 
+            throw new ApiResponseException(sprintf('Exception class : %s , Exception Message is : %s', get_class($e), $e->getMessage()));
         }
     }
 }
