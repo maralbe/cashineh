@@ -11,5 +11,5 @@ namespace thirdparty\cashineh;
 interface iCashinehAPIClient
 {
 
-    function saveOrderInfo();
+    function saveOrderInfo(int $shopping_trip_id, int $total_amount, int $order_id, int $shopping_status, string $order_date);
 }
