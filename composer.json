@@ -3,7 +3,7 @@
   "description": "library for cashineh",
   "type": "library",
   "require": {
-    "ext-json": "^1.6",
+    "ext-json": "*",
     "guzzlehttp/guzzle": "^6.5"
   },
   "license": "MIT",
